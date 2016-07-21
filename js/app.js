@@ -82,11 +82,11 @@ $(document).ready(function() {
         // yo
         var clone = $('.inputList').clone();
         $('.choices').append(clone)
-            //var html = '';
-            // hints: html += "<p>some markup</p>"
-            // LOOP
-            // html += '<li><input class="user-option" type="radio" name="option" value="1"></li>'
-            // $('.choices ul.inputList').append(html);
+        //var html = '';
+        // hints: html += "<p>some markup</p>"
+        // LOOP
+        // html += '<li><input class="user-option" type="radio" name="option" value="1"></li>'
+        // $('.choices ul.inputList').append(html);
         var html = '';
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
             // console.log(q);
@@ -96,7 +96,7 @@ $(document).ready(function() {
         $('.choices ul.inputList').append(html);
 
     });
- 
+
     //Hints: Flash out or empty content in an element
     // $(selector).empty();
 
@@ -104,22 +104,24 @@ $(document).ready(function() {
 
 
 
-    //select question function
+    //User selects answer function
     $('.question-section').on('click', '.user-option', function() {
-        currentQuestionIndex++;
+       
         $('.question').text(questionList[currentQuestionIndex].question);
         var userAnswer = $(this).val();
         var html = '';
         var correctAnswer = questionList[currentQuestionIndex].correctAnswer;
+        console.log(correctAnswer);
+         currentQuestionIndex++;
 
         //Displays current question number
         currentNumber++
         $('.numberCount').text('Question ' + currentNumber + ' of 5');
 
         //checks/displays for correct answer
-        if(userAnswer == correctAnswer){
-        	totalCorrect++
-        	$('.numberCorrect').text('Questions Correct ' + totalCorrect);
+        if (userAnswer == correctAnswer) {
+            totalCorrect++
+            $('.numberCorrect').text('Questions Correct ' + totalCorrect);
         }
 
 
@@ -129,40 +131,41 @@ $(document).ready(function() {
 
             html += '<li><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label><input class="user-option" type="radio" name="option" value=' + i + '></li>';
         }
+
         //clears input list
         $('.choices ul.inputList').empty();
 
         //adds new input list
         $('.choices ul.inputList').append(html);
+   
 
-        
     });
 
     //Result Page
-        //  if((currentQuestionIndex + 1) == totalQuestions){
-        // 	$('question-counter question-section').hide();
-        // 	$('.result-section').show();
-        // }
+    //  if((currentQuestionIndex + 1) == totalQuestions){
+    // 	$('question-counter question-section').hide();
+    // 	$('.result-section').show();
+    // }
 
 
 
-function newGame(){
-	location.reload();
+    function newGame() {
+        location.reload();
 
-	// $('.numberCorrect').text('Questions Correct 0');
-	// $('.numberCount').text('Question 1 of 10');
-	// currentQuestionIndex = 0;
- //    totalCorrect = 0;
- //    currentNumber = 1;
- //    $('.startPage').show();
- //    $('.question-counter, .question-section').css('display', 'none');
-
-
-
-}
+        // $('.numberCorrect').text('Questions Correct 0');
+        // $('.numberCount').text('Question 1 of 10');
+        // currentQuestionIndex = 0;
+        //    totalCorrect = 0;
+        //    currentNumber = 1;
+        //    $('.startPage').show();
+        //    $('.question-counter, .question-section').css('display', 'none');
 
 
-$('#button-reset').click(newGame);
+
+    }
+
+
+    $('#button-reset').click(newGame);
 
 
 
