@@ -1,0 +1,37 @@
+* {
+	outline:red 1px solid;
+}
+
+
+body {
+	margin: 0 auto;
+	width: 500px;
+	text-align: center;
+}
+
+header {
+	margin-top: 100px;
+
+}
+
+.startPage {
+	padding: 25px 0;
+}
+
+.startPage > h2 {
+	padding-bottom: 20px;
+}
+
+.choices {
+	text-align: left;
+	margin-left: 100px;
+
+}
+
+.inputList {
+	list-style: none;
+}
+
+li { 
+	margin-bottom: 20px;
+ }
