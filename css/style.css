@@ -35,3 +35,7 @@ header {
 li { 
 	margin-bottom: 20px;
  }
+
+.question-counter, .question-section {
+	display: none;
+}
