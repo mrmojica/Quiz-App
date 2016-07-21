@@ -39,7 +39,7 @@ $(document).ready(function() {
         },
 
         {
-            question: 'question2',
+            question: 'question 2',
             choices: ['answer1b', 'answer2b', 'answer3b', 'answer4b'],
             correctAnswer: 0
         },
@@ -64,6 +64,9 @@ $(document).ready(function() {
     ];
 
     var currentQuestionIndex = 0;
+    var totalCorrect = 0;
+    var currentNumber = 1;
+
     //start button wire up ***************
 
     $('.start-button').click(function() {
@@ -87,25 +90,15 @@ $(document).ready(function() {
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
             // console.log(q);
             $('.question').text(questionList[currentQuestionIndex].question);
-            html += '<li><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label><input class="user-option" type="radio" name="option" value="1">' + '</li>';
+            html += '<li><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label><input class="user-option" type="radio" name="option" value=' + i + '>' + '</li>';
         };
         $('.choices ul.inputList').append(html);
 
     });
-    //display function
-    // console.log(questionList[0].choices[0]);
-    // function questionDisplay(arrayToSearch, key){
-    // 	//looping over an array of objects	
-    // 	for (var i = 0; i < questionList.length; i++){
-    // 		if(questionList[i][key] == arrayToSearch){
-    // 			return i;
-    // 		}
-
-    // 	}
+ 
     //Hints: Flash out or empty content in an element
     // $(selector).empty();
 
-    //declare var for userInput
 
 
 
@@ -116,16 +109,36 @@ $(document).ready(function() {
         $('.question').text(questionList[currentQuestionIndex].question);
         var userAnswer = $(this).val();
         var html = '';
+        var correctAnswer = questionList[currentQuestionIndex].correctAnswer;
+        currentNumber++
+        $('.numberCount').text('Question ' + currentNumber + ' of 10');
+
+        //checks for correct answer
+        if(userAnswer == correctAnswer){
+        	totalCorrect++
+        	$('.numberCorrect').text('Questions Correct ' + totalCorrect);
+        	
+        }
+
+
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
 
-            html += '<li><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label><input class="user-option" type="radio" name="option" value="1"></li>';
+            html += '<li><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label><input class="user-option" type="radio" name="option" value=' + i + '></li>';
         }
-        //????
+        //clears input list
         $('.choices ul.inputList').empty();
+
+        //adds new input list
         $('.choices ul.inputList').append(html);
 
-        console.log(userAnswer);
+        
     });
+
+
+
+
+
+
 
 
 
