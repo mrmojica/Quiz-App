@@ -81,7 +81,7 @@ $(document).ready(function() {
         // hints: .clone()
         // yo
         var clone = $('.inputList').clone();
-        $('.choices').append(clone)
+        $('.choices').append(clone);
         //var html = '';
         // hints: html += "<p>some markup</p>"
         // LOOP
@@ -91,7 +91,7 @@ $(document).ready(function() {
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
             // console.log(q);
             $('.question').text(questionList[currentQuestionIndex].question);
-            html += '<li><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label><input class="user-option" type="radio" name="option" value=' + i + '>' + '</li>';
+            html += '<li><input class="user-option" type="radio" name="option" value=' + i + '> + <label>' + questionList[currentQuestionIndex]["choices"][i] + '</label></li>';
         };
         $('.choices ul.inputList').append(html);
 
@@ -106,13 +106,13 @@ $(document).ready(function() {
 
     //User selects answer function
     $('.question-section').on('click', '.user-option', function() {
-       
+
         $('.question').text(questionList[currentQuestionIndex].question);
         var userAnswer = $(this).val();
         var html = '';
         var correctAnswer = questionList[currentQuestionIndex].correctAnswer;
         console.log(correctAnswer);
-         currentQuestionIndex++;
+        currentQuestionIndex++;
 
         //Displays current question number
         currentNumber++
@@ -129,7 +129,7 @@ $(document).ready(function() {
 
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
 
-            html += '<li><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label><input class="user-option" type="radio" name="option" value=' + i + '></li>';
+            html += '<li><input class="user-option" type="radio" name="option" value=' + i + '> + <label>' + questionList[currentQuestionIndex]["choices"][i] + '</label></li>';
         }
 
         //clears input list
@@ -137,7 +137,7 @@ $(document).ready(function() {
 
         //adds new input list
         $('.choices ul.inputList').append(html);
-   
+
 
     });
 
