@@ -33,39 +33,40 @@ $(document).ready(function() {
     var questionList = [
 
         {
-            question: 'question1',
-            choices: ['answer1a', 'answer2a', 'answer3a', 'answer4a'],
-            correctAnswer: 0
+            question: 'An object falls out of an airplane, and falls freely downward. Its...',
+            choices: ['mass increases', 'acceleration increases', 'velocity increases', 'gravity increases'],
+            correctAnswer: 2
         },
 
         {
-            question: 'question 2',
-            choices: ['answer1b', 'answer2b', 'answer3b', 'answer4b'],
-            correctAnswer: 0
+            question: 'You brake suddenly. The passengers in your car lurch forward. This demonstrates...',
+            choices: ['gravity', 'weight', 'mass', 'inertia'],
+            correctAnswer: 3
         },
 
         {
-            question: 'question3',
-            choices: ['answer1c', 'answer2c', 'answer3c', 'answer4c'],
-            correctAnswer: 0
+            question: 'A truck is travelling at 10 m/s. A package drops off the truck. Neglecting air resistance, as the package hits the ground, its horizontal speed is',
+            choices: ['0 m/s', '10 m/s', '20 m/s', 'depends on the weight of the package'],
+            correctAnswer: 1
         },
 
         {
-            question: 'question4',
-            choices: ['answer1d', 'answer2d', 'answer3d', 'answer4d'],
-            correctAnswer: 0
+            question: 'A truck is decelerating. A package is dropped from the midpoint of the ceiling of the truck\'s storage compartment. The package hits the floor',
+            choices: ['immediately beneath the midpoint of the ceiling', 'closer to the back of the truck than the midpoint', 'closer to the front of the truck than the midpoint', 'all of the above'],
+            correctAnswer: 2
         },
 
         {
-            question: 'question5',
-            choices: ['answer1e', 'answer2e', 'answer3e', 'answer4e'],
-            correctAnswer: 0
+            question: 'You tie a rock to a string and whirl it in a horizontal circle. The string breaks. In the absence of gravity, the rock',
+            choices: ['travels in a circle', 'falls in a straight line down to the earth', 'flies in a straight line vertically up into the air', 'travels in a straight line horizontally away from you'],
+            correctAnswer: 3
         }
     ];
 
     var currentQuestionIndex = 0;
     var totalCorrect = 0;
     var currentNumber = 1;
+    var totalQuestions = questionList.length;
 
     //start button wire up ***************
 
@@ -110,15 +111,18 @@ $(document).ready(function() {
         var userAnswer = $(this).val();
         var html = '';
         var correctAnswer = questionList[currentQuestionIndex].correctAnswer;
-        currentNumber++
-        $('.numberCount').text('Question ' + currentNumber + ' of 10');
 
-        //checks for correct answer
+        //Displays current question number
+        currentNumber++
+        $('.numberCount').text('Question ' + currentNumber + ' of 5');
+
+        //checks/displays for correct answer
         if(userAnswer == correctAnswer){
         	totalCorrect++
         	$('.numberCorrect').text('Questions Correct ' + totalCorrect);
-        	
         }
+
+
 
 
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
@@ -134,9 +138,31 @@ $(document).ready(function() {
         
     });
 
+    //Result Page
+        //  if((currentQuestionIndex + 1) == totalQuestions){
+        // 	$('question-counter question-section').hide();
+        // 	$('.result-section').show();
+        // }
 
 
 
+function newGame(){
+	location.reload();
+
+	// $('.numberCorrect').text('Questions Correct 0');
+	// $('.numberCount').text('Question 1 of 10');
+	// currentQuestionIndex = 0;
+ //    totalCorrect = 0;
+ //    currentNumber = 1;
+ //    $('.startPage').show();
+ //    $('.question-counter, .question-section').css('display', 'none');
+
+
+
+}
+
+
+$('#button-reset').click(newGame);
 
 
 
