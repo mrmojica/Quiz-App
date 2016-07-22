@@ -65,6 +65,7 @@ $(document).ready(function() {
 
     var currentQuestionIndex = 0;
     var totalCorrect = 0;
+    var finalCorrect;
     var currentNumber = 1;
     var totalQuestions = questionList.length;
 
@@ -106,25 +107,51 @@ $(document).ready(function() {
 
     //User selects answer function
     $('.question-section').on('click', '.user-option', function() {
-
+        if (currentNumber < 5) {
         $('.question').text(questionList[currentQuestionIndex].question);
         var userAnswer = $(this).val();
         var html = '';
         var correctAnswer = questionList[currentQuestionIndex].correctAnswer;
-        console.log(correctAnswer);
+        console.log('correctAnswer is ' + correctAnswer);
         currentQuestionIndex++;
 
         //Displays current question number
         currentNumber++
         $('.numberCount').text('Question ' + currentNumber + ' of 5');
-
+        
         //checks/displays for correct answer
         if (userAnswer == correctAnswer) {
             totalCorrect++
+            
+
             $('.numberCorrect').text('Questions Correct ' + totalCorrect);
         }
+      }
 
+      else {
+        
+        $('.question-counter, .question-section').hide();
+        $('.result-section').show();
+        if (userAnswer != correctAnswer) {
+          console.log('user answer' + userAnswer);
+          console.log('correctAnswer' + correctAnswer);
+            
+            
+            console.log('totalCorrect is ' + totalCorrect);
+            $('.numberCorrect').text('Questions Correct ' + totalCorrect);
+            $('.question').text('You got ' + totalCorrect + ' questions right!')
 
+          }
+          else {
+            console.log('finalCorrect is ' + finalCorrect);
+            finalCorrect = totalCorrect;
+            finalCorrect++;
+            $('.numberCorrect').text('Questions Correct ' + finalCorrect);
+            $('.question').text('You got ' + finalCorrect + ' questions right!')
+          }
+        }
+      
+      console.log('totalCorrect is ' + totalCorrect);
 
 
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
