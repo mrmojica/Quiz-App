@@ -69,7 +69,7 @@ $(document).ready(function() {
         }
 
         if (currentNumber === 6) {
-          $('.question-counter, .question-section').hide();
+          $('.question-counter, .question-section, .numberCorrect').hide();
           $('.result-section').show();
           $('.question').text('You got ' + (totalCorrect) + ' questions right!')
         }
