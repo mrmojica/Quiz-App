@@ -1,34 +1,4 @@
-//start with landing page and start button
-//wire start button
-//5 q's
-//upon start click, q's and a's .show one at a time 
-//prevent empty answer
-//no skipping q's 
-//display q# and score
-//immediately inform user if question was answered correctly
-//conditional statement
-//overall score screen at end
-//restart function
-//**************************************
-//create questions and answers as objects
-//start button wire up
-//create restart function
-//click handler
-//hide landing page
-//show questions in order
-//create and call display function
-//looping over an array of objects	
-//declare var for userInput
-//compare userInput to correctAnswer
-//increment counter variable
-//figure out how to display # of correct answers
-//conditional contingent on value of object
-//assign variable
-//summary page
-
 $(document).ready(function() {
-
-    // variables**********
 
     var questionList = [
 
@@ -69,136 +39,62 @@ $(document).ready(function() {
     var currentNumber = 1;
     var totalQuestions = questionList.length;
 
-    //start button wire up ***************
-
     $('.start-button').click(function() {
-        //alert('this works!');
-        //hide landing page
         $('.startPage').hide();
-        //show questions in order
         $('.question-counter, .question-section').css('display', 'block');
-
-        //display function that shows questions and choices.
-        // hints: .clone()
-        // yo
         var clone = $('.inputList').clone();
         $('.choices').append(clone);
-        //var html = '';
-        // hints: html += "<p>some markup</p>"
-        // LOOP
-        // html += '<li><input class="user-option" type="radio" name="option" value="1"></li>'
-        // $('.choices ul.inputList').append(html);
         var html = '';
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
-            // console.log(q);
             $('.question').text(questionList[currentQuestionIndex].question);
-            html += '<li><input class="user-option" type="radio" name="option" value=' + i + '> + <label>' + questionList[currentQuestionIndex]["choices"][i] + '</label></li>';
+            html += '<li><input class="user-option" type="radio" name="option" value=' + i + '><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label></li>';
         };
         $('.choices ul.inputList').append(html);
 
     });
 
-    //Hints: Flash out or empty content in an element
-    // $(selector).empty();
-
-
-
-
-
-    //User selects answer function
     $('.question-section').on('click', '.user-option', function() {
-        if (currentNumber < 5) {
+        
         $('.question').text(questionList[currentQuestionIndex].question);
         var userAnswer = $(this).val();
         var html = '';
         var correctAnswer = questionList[currentQuestionIndex].correctAnswer;
-        console.log('correctAnswer is ' + correctAnswer);
         currentQuestionIndex++;
 
-        //Displays current question number
         currentNumber++
         $('.numberCount').text('Question ' + currentNumber + ' of 5');
         
-        //checks/displays for correct answer
         if (userAnswer == correctAnswer) {
-            totalCorrect++
-            
-
-            $('.numberCorrect').text('Questions Correct ' + totalCorrect);
+            totalCorrect++ 
         }
-      }
 
-      else {
-        
-        $('.question-counter, .question-section').hide();
-        $('.result-section').show();
-        if (userAnswer != correctAnswer) {
-          console.log('user answer' + userAnswer);
-          console.log('correctAnswer' + correctAnswer);
-            
-            
-            console.log('totalCorrect is ' + totalCorrect);
-            $('.numberCorrect').text('Questions Correct ' + totalCorrect);
-            $('.question').text('You got ' + totalCorrect + ' questions right!')
-
-          }
-          else {
-            console.log('finalCorrect is ' + finalCorrect);
-            finalCorrect = totalCorrect;
-            finalCorrect++;
-            $('.numberCorrect').text('Questions Correct ' + finalCorrect);
-            $('.question').text('You got ' + finalCorrect + ' questions right!')
-          }
+        if (currentNumber === 6) {
+          $('.question-counter, .question-section').hide();
+          $('.result-section').show();
+          $('.question').text('You got ' + (totalCorrect) + ' questions right!')
         }
+      
+      $('.numberCorrect').text('Questions Correct ' + totalCorrect);
       
       console.log('totalCorrect is ' + totalCorrect);
 
-
         for (var i = 0; i < questionList[currentQuestionIndex]["choices"].length; i++) {
 
-            html += '<li><input class="user-option" type="radio" name="option" value=' + i + '> + <label>' + questionList[currentQuestionIndex]["choices"][i] + '</label></li>';
+            html += '<li><input class="user-option" type="radio" name="option" value=' + i + '><label>' + questionList[currentQuestionIndex]["choices"][i] + '</label></li>';
         }
 
-        //clears input list
         $('.choices ul.inputList').empty();
 
-        //adds new input list
         $('.choices ul.inputList').append(html);
-
 
     });
 
-    //Result Page
-    //  if((currentQuestionIndex + 1) == totalQuestions){
-    // 	$('question-counter question-section').hide();
-    // 	$('.result-section').show();
-    // }
-
-
-
     function newGame() {
         location.reload();
-
-        // $('.numberCorrect').text('Questions Correct 0');
-        // $('.numberCount').text('Question 1 of 10');
-        // currentQuestionIndex = 0;
-        //    totalCorrect = 0;
-        //    currentNumber = 1;
-        //    $('.startPage').show();
-        //    $('.question-counter, .question-section').css('display', 'none');
-
-
 
     }
 
 
     $('#button-reset').click(newGame);
-
-
-
-
-
-
-
 
 });
